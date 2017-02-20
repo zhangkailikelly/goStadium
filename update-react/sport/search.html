@@ -1,0 +1,43 @@
+<%include ../common/top.html %>
+<link rel="stylesheet" href="/sport/css/main.css"/>
+
+<title>搜索</title>
+
+<body ontouchstart>
+	<div class="container" id="container">
+		<!--头部开始-->
+        <header data-am-widget="header" class="am-header am-header-default am-no-layout">
+			
+			<h1 class="am-header-title" id="menutil">搜索</h1>
+			
+			<input type="hidden" id="childname" value="">
+			
+			<div class="am-header-right am-header-nav">
+				<a href="/sport/list" class="ico-home"><span><i></i></span></a>
+			</div>
+		</header> 
+		<div class="CGSearch">
+			<div id="new_searchtext">
+				<form id="searchForm" method="get" action="">
+					<input type="hidden" value="">
+					<input type="hidden">
+					<input id="keyword" class="inp-search" name="keyword" type="search" value="" placeholder="请输入场地／场馆名称查询" >
+					<input class="btn-search ColorA" onclick="dosearch();" name="search-btn" type="button" value="搜索">
+				</form>
+			</div>
+		</div>
+		
+		
+	    
+	</div>
+	
+	
+	<script type="text/javascript">
+		function dosearch(){
+			location.href="/sport/list?name="+$("#keyword").val();
+		}
+	</script>
+	
+	
+
+<%include ../common/bottom.html %>

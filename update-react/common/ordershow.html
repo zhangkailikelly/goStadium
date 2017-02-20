@@ -1,0 +1,76 @@
+<%include top.html %>
+
+
+<script type="text/javascript" src="/common/js/ordershow.js"></script>
+
+<body>
+	
+
+<div class="am-g am-topbar-fixed-top" style="background:#505050;height:50px;padding: 0px;">
+    <div class="am-u-sm-3" style="margin-top:14px;text-align:left">
+        <!--<span class="am-icon-angle-left am-icon-sm" style="color:white;"></span>-->
+    </div>
+    <div class="am-u-sm-6" style="margin-top:12px;text-align:center;color: #75f9fe;font-size:18px;">
+          订单详情
+    </div>
+    <div class="am-u-sm-3" style="margin-top:11px;text-align:right">
+    </div>
+
+</div>
+
+
+<input type="hidden" value="<%=locals.orderinfo.orderNo%>" id="orderNo" />
+
+<div class="am-g">
+	<div class="am-u-sm-12" style="background:#B2B2B2;">
+  	订单信息
+    </div>
+	
+	<div class="am-u-sm-12">
+		订单编号：<%=locals.orderinfo.orderNo%>
+	</div>
+	<div class="am-u-sm-12">
+		状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：<%=locals.orderinfo.statu%>
+	</div>
+	<div class="am-u-sm-12">
+		是否支付：<%=locals.orderinfo.isPay%>
+	</div>
+	
+	<div class="am-u-sm-12">
+		订单总额：￥<%=locals.orderinfo.total%>
+	</div>
+	
+	<div class="am-u-sm-12">
+		下单时间：<%=locals.orderinfo.createTime%>
+	</div>
+	<div class="am-u-sm-12">
+		支付方式：<%=locals.orderinfo.payType%>
+	</div>
+	<div class="am-u-sm-12">
+		付款时间：<%=locals.orderinfo.payTime%>
+	</div>
+	
+	<div class="am-u-sm-12">
+		联系电话：<%=locals.orderinfo.phone%>
+	</div>
+	
+</div>
+
+<%if(locals.ordertype=='PQ'){%>
+<div class="am-g">
+  <div class="am-u-sm-12" style="background:#B2B2B2;margin-top:5px;">
+  	购买产品
+  </div>
+  <div class="am-u-sm-12">
+		<%=locals.orderinfo.proName%>
+  </div>
+  
+  
+</div>
+<%}%>
+
+
+
+
+<%include bottom.html %>
+

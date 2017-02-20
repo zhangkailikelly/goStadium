@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<title>微信支付</title>
+		<meta charset="utf-8">
+	</head>
+	<script type="text/javascript">
+		//开始支付
+	  	function callpay(){
+	  		var appId = document.getElementById("appId").value;
+	  		var timeStamp = document.getElementById("timeStamp").value;
+	  		var nonceStr = document.getElementById("nonceStr").value;
+	  		var packageValue = document.getElementById("packageValue").value;
+	  		var paySign = document.getElementById("paySign").value;
+	  		
+	  			document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() { 
+	  				WeixinJSBridge.invoke('getBrandWCPayRequest',{
+			  		 "appId" : appId,"timeStamp" : timeStamp, "nonceStr" : nonceStr, 
+			  		 "package" : packageValue,"signType" : "MD5", "paySign" : paySign 
+			   			},function(res){
+		
+							WeixinJSBridge.log(res.err_msg);
+				            if(res.err_msg == "get_brand_wcpay_request:ok"){  
+				               //支付成功  改订单状态
+				               location.href="/wxpay/back?ordercode=<%=locals.ordercode%>&status=success&paySign=" + paySign;
+				            }else if(res.err_msg == "get_brand_wcpay_request:cancel"){  
+				            	history.back(-1);
+				                //alert("用户取消支付!");  
+				            }else{  
+				               alert("支付失败!");  
+				               location.href="/wxpay/back?&status=fail";
+				            }  
+						});
+						
+					});
+	  		
+		
+			};
+			
+		
+			
+			
+	  </script>
+	
+	<body onload="callpay();">
+		<br><br><br><br><br><br><br>
+		<% console.log(locals) %>
+		<div style="display:none;">
+			<input type='text' id='appId' value='<%=locals.appId ||''%>' >
+			<input type='text' id='nonceStr' value='<%=locals.nonceStr ||''%>' >
+			<input type='text' id='paySign' value='<%=locals.paysign ||''%>' style="width:260px">
+			<input type='text' id='timeStamp' value='<%=locals.timeStamp ||''%>' >
+			<input type='text' id='packageValue' value='<%=locals.packageValue ||''%>' style="width:260px">
+								
+	  		<div style="text-align:center;size:30px;">
+	  			<input type="button" style="width:200px;height:80px;" value="微信支付" onclick="callpay()">
+	  		</div>
+  		</div>
+	</body>
+
+</html>

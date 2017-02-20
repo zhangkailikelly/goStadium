@@ -1,0 +1,238 @@
+
+.main {
+    height: 100%;
+    overflow: hidden;
+    background-color: #fff;
+}
+.main {
+
+    min-height: 100%;
+}
+.hide {
+    display: none;
+}
+.toast {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+/* line 159, ../../../includes/reset.scss */
+.toast .toast-alert {
+    width: 20rem;
+    height: 11rem;
+    padding: 2rem 2rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -5.5rem;
+    margin-left: -10rem;
+    border-radius: 5px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* line 175, ../../../includes/reset.scss */
+.toast .toast-alert .toast-msg {
+
+    height: 11rem;
+    line-height: 3rem;
+    color: #fff;
+    font-size: 1.6rem;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+    text-align:center;
+}
+
+/*几号场地*/
+.book-container {position: absolute;top: 10rem;bottom: 11.5rem;left: 0;width: 100%;overflow: hidden;}
+.book-container .book-area {top: 0.15rem;left: 55px;right: 0;height: 24px;}
+.book-container .book-area, .book-container .book-time {color: #666;font-size: 1.4rem;position: absolute;overflow: hidden;}
+.book-container .book-area > ul {position: absolute; width: 1690px !important;left: 0;}
+.book-container .book-area > ul li {float: left;width: 5rem;height: 24px;margin-right: 1px;overflow: hidden;text-align:center;}
+/*时间*/
+.book-container .book-time {/* position: absolute; opacity: .6;*/left: 10px;top: 0;bottom:0;/* z-index: 4;pointer-events: none; */font-size: 10px;color: #fff;filter: alpha(opacity=60);width:36px;}
+.book-container .book-time ul {width: 36px;border-radius: 25px;background: #c9c9c9;position: absolute;left:0;}
+.book-container .book-time .cs {display: block;height: 18px;}
+.book-container .book-time li {position: relative;height: 2.8rem;margin-top:1px;white-space: nowrap;text-align: center;}
+
+/*右侧选择区域*/
+#wrapper {position: absolute;z-index: 1;left:55px;padding-left: 0.15rem;right: 0;top: 24px;bottom: 0;}
+#scroller {-webkit-tap-highlight-color: transparent;width: 100%;}
+#scroller ul:after:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}
+.book-container .book-list ul li.sold{background:url(../images/sold.jpg)}
+.book-container .book-list {color: #fff;font-size: 1.4rem;}
+.book-container .book-list:after {
+    content: "\0020";display: block;height: 0;clear: both;overflow: hidden;visibility: hidden;}
+.book-container .book-list ul {float: left;}
+.book-container .book-list ul li {margin-bottom: 1px;}
+.book-container .book-list ul li .am-btn{padding:0.65rem 0.7rem;font-size:1.5rem;}
+.book-order{overflow: hidden;border-top:1px solid #e3e3e3;    position: absolute;bottom: 0;left: 0;width: 100%;z-index:2;}
+.book-order .book-tip{text-align: center;padding:7px 20% 5px;overflow: hidden;}
+.book-order .book-tip li {float: left;width: 33.3333%;}
+.book-order .book-tip li .site {display:block;width:38px;height:16px;margin:0 auto;}
+.book-order .site-list{padding:10px 1rem 0;overflow: hidden;}
+.book-order .site-list li{width:80px;font-size:13px;margin-bottom:10px;border-radius: 2px;border:1px solid #cdcdcd;float:left;margin-right:10px;text-align:center;}
+.book-order.site-list li{width:100px;font-size:13px;margin-bottom:1rem;border-radius: 2px;border:1px solid #cdcdcd;float:left;margin-right:1rem;text-align:center;}
+.book-order .site{width:75px;height:38px;line-height:38px;display:inline-block;}
+.book-order .site-list li em,.site-list li span{display: block;}
+
+.book-container .book-area .active, .book-container .book-time .active{color:#3ba5f9;}
+
+.book-order .sold{background: url(../images/sold.jpg) no-repeat;}
+.book-order .optional{background: url(../images/Optional.jpg) no-repeat;}
+.book-order .selected{background: url(../images/selectedS.jpg) no-repeat;}
+.book-submit{border-top: 1px solid #efefef;padding:0.625rem 1rem; text-align: center;border-radius: 5px;
+    /* background-color: #ff9900;margin:0 1.5rem 1rem;color:#fff; */}
+.book-submit p{padding: 0.625rem 1rem 0.625rem 0;}
+
+.book-container .book-list ul .selected {
+    background: url(../images/Selected.jpg) no-repeat;background-size: 100% 100%;
+}
+.book-container .book-list ul .overtime {
+    background: #e2e2e2;
+}
+.book-container .book-list ul .disable {
+    background: url(../images/sold.jpg) no-repeat;background-size: 100% 100%;
+    color: #f0f1f5;
+}
+.book-container .book-list ul li {
+    width: 5rem;
+    height: 2.8rem;
+    line-height:2.8rem;
+    border-radius: 2px;
+    margin-bottom: 1px;
+    margin-right: 1px;
+    background:url(../images/Optional.jpg) no-repeat;
+    background-size: 100% 100%;
+    text-align:center;
+}
+
+.book-noPaySprite {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    font-size: 0.15rem;
+    color: #666;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+/* line 322, ../sass/book.scss */
+.book-noPaySprite ul {
+    width: 2.75rem;
+    position: relative;
+    top: 50%;
+    margin: 0 auto;
+    line-height: 1;
+    text-align: left;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 5px;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+/* line 336, ../sass/book.scss */
+.book-noPaySprite ul li:nth-of-type(1) {
+    padding: 0 0.15rem;
+    line-height: 0.4rem;
+    border-bottom: 1px solid #e6e6e6;
+    text-align: center;
+}
+/* line 342, ../sass/book.scss */
+.book-noPaySprite ul li:nth-of-type(2) {
+    padding: 0.1rem 0.15rem;
+    line-height: 1.6;
+}
+/* line 347, ../sass/book.scss */
+.book-noPaySprite ul li:nth-of-type(2) p span:nth-of-type(1) {
+    float: left;
+    margin-right: 0;
+}
+/* line 351, ../sass/book.scss */
+.book-noPaySprite ul li:nth-of-type(2) p span:nth-of-type(2) {
+    color: #222;
+    display: block;
+    overflow: hidden;
+}
+/* line 355, ../sass/book.scss */
+.book-noPaySprite ul li:nth-of-type(2) p span:nth-of-type(2) em {
+    display: block;
+}
+/* line 362, ../sass/book.scss */
+.book-noPaySprite ul li:nth-of-type(3) {
+    text-align: center;
+    border-top: 1px solid #e6e6e6;
+}
+/* line 140, ../../../includes/reset.scss */
+.book-noPaySprite ul li:nth-of-type(3):after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}
+/* line 366, ../sass/book.scss */
+.book-noPaySprite ul li:nth-of-type(3) div {
+    float: left;
+    width: 50%;
+    line-height: 0.4rem;
+    background-color: #f9f9f9;
+}
+/* line 372, ../sass/book.scss */
+.book-noPaySprite ul li:nth-of-type(3) #book-Cancel {
+    background-image: url(../images/border-r.jpg);
+    background-position: right top;
+    background-repeat: repeat-y;
+}
+/* line 377, ../sass/book.scss */
+.book-noPaySprite ul li:nth-of-type(3) a div {
+    color: #009ff0;
+}
+/* line 383, ../sass/book.scss */
+.book-noPaySprite a, .book-noPaySprite a:hover, .book-noPaySprite a:visited {
+    color: #666;
+}
+
+.book-orderinfo {
+    font-size: 0;
+}
+
+.book-tip, .book-orderinfo {
+    /*  height:2rem; */
+    padding:5px 1rem 0;
+    overflow:hidden;
+}
+
+.book-orderinfo li {
+    width:22%;font-size:13px;margin-bottom:5px;border-radius: 2px;border:1px solid #cdcdcd;float:left;margin-right:10px;text-align:center;padding:3px 0;
+}
+.book-orderinfo li > div:nth-of-type(1) {
+    line-height: 1.5rem;
+    height: 1.5rem;
+    overflow: hidden;
+    color: #333;
+}
+.book-orderinfo li > div {
+    font-size: 1.2rem;
+}
+
+

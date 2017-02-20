@@ -1,0 +1,211 @@
+<%include ../common/top.html %>
+<link rel="stylesheet" href="/sport/css/main.css"/>
+<link rel="stylesheet" href="/sport/css/swiper.min.css"/>
+<script type="text/javascript" src="/sport/js/details.js"></script>
+
+<script src="/sport/js/swiper.min.js"></script>
+
+<title>场馆详情</title>
+
+<body ontouchstart>
+
+<div class="container" id="container">
+	<header class="am-header am-header-default am-no-layout header-opacity">
+		<div class="am-header-left am-header-nav">
+			<a href="javascript:history.back();" class="">
+				<span class="am-header-nav-title"></span>
+				<i class="am-header-icon am-icon-chevron-left"></i>
+			</a>
+		</div>
+		<div class="am-header-right am-header-nav">
+			<a href="#" onclick="collect();">
+				<i class="am-header-icon am-icon-heart-o"></i>
+			</a>
+		</div>
+	</header>
+	<!--图片轮播-->
+	<div data-am-widget="slider" class="am-slider am-slider-c2 am-sliders am-no-layout" style="margin-top:-59px;">
+			<span class="ImgNumber">
+				  <%
+				var img;
+					if( locals.data1.imgurl ) {
+						console.log("ok");
+							if(Array.isArray(locals.data1.imgurl.split('|'))){
+									img=locals.data1.imgurl.split('|');
+								}else{
+									img=0;
+								}
+					}else{img = 0}
+					console.log(img);
+                  %>
+                  <%=img.length%> 张
+                  
+			</span>
+		<div class="am-viewport">
+			<ul class="am-slides">
+				<%
+				var img;
+				if( locals.data1.imgurl ) {
+				console.log("ok");
+				if(Array.isArray(locals.data1.imgurl.split('|'))){
+				img=locals.data1.imgurl.split('|');
+				}else{
+				img=0;
+				}
+				}else{img = 0}
+				console.log(img);
+				for(var i=0;i<img.length;i++){%>
+				<li class="">
+					<img src="http://101.200.133.31:3008/uploadImage/<%=locals.data1.id+'/'+img[i]%>" style="height:200px;">
+				</li>
+				<%}%>
+				%>
+				<!--<li class="clone" aria-hidden="true">
+                    <img src="images/lunbo1.jpg">
+                </li>-->
+
+			</ul>
+		</div>
+		<!-- <ol class="am-control-nav am-control-paging">
+            <li><a class="">1</a><i></i></li>
+            <li><a class="">2</a><i></i></li>
+            <li><a class="am-active">3</a><i></i></li>
+            <li><a class="">4</a><i></i></li>
+            <li><a class="">5</a><i></i></li>
+        </ol> -->
+	</div><!--图片轮播-->
+	<div class="CGlianxi" style="padding:1rem 1rem 0;">
+		<h2 class="ColorA"><%=locals.data1.name%><a href="tel:<%=locals.data1.linkmanphone%>" class="fr ico-phone">
+			<span style="border-left:1px solid #d5d5d5;padding-left:10px;;"><i></i></span></a>
+		</h2>
+		<p style="padding:1rem 0 0;"><a href="javascript:;" class="ico-DW"><span><i></i></span></a>
+			<%=locals.data1.city%><%=locals.data1.district%><%=locals.data1.address%>
+		</p>
+	</div>
+
+	<hr class="am-margin-top-sm am-margin-bottom-sm">
+
+	<%if(locals.data2.length<1){%>
+	<div class="am-u-sm-12 am-text-center" style="color: red;">抱歉!该场馆暂无开放场地...</div>
+	<%}else{%>
+	<div data-am-widget="tabs" class="am-tabs am-tabs-default Nomargin CGSM" data-am-tabs="{noSwipe: 1}">
+
+
+
+		<div id="clm-zhao" style="width:100%;box-sizing: border-box;overflow-x:scroll;">
+			<ul id="clm-tabs" class="am-tabs-nav" style="background-color:#fff;display: block;overflow-x:scroll;white-space: nowrap;">
+				<%for(var i=0;i<locals.data2.length;i++){%>
+				<%if(locals.data2[i].billingUnit != 2){%>
+				<li clmData = <%=locals.data2[i].billingUnit%> style="display: inline-block" class="am-active" dataId = <%=locals.data2[i].id%> ><a href="[data-tab-panel-<%=i%>]"><%=locals.data2[i].fieldname%></a></li>
+				<%}%>
+				<%}%>
+			</ul>
+		</div>
+
+
+
+
+
+		<div class="am-tabs-bd" style="border:0">
+			<%for(var i=0;i<locals.data2.length;i++){%>
+			<%if(locals.data2[i].billingUnit != 2){%>
+			<div data-tab-panel-<%=i%> class="am-tab-panel am-active"  style="padding:0;">
+			<!--场馆选定 周几-->
+			<div class="am-u-sm-12 clearfix" style="padding:1rem 0 1rem 0;background-color:#f0f1f5;">
+				<div class="swiper-container swiper-container-horizontal CG-swipe">
+					<div class="swiper-wrapper">
+
+						<%for(var j=0;j<locals.weeks.length;j++){%>
+						<div class="swiper-slide uniform" >
+							<div class="DateOrder">
+								<p class="good-price">
+									<strong class="am-text-secondary ColorO">￥??? <em class="little-price">起</em></strong>
+								</p>
+								<h3 class="ColorA"><%=locals.weeks[j].w%></h3>
+								<p class="ColorB DateOrderT"><%=locals.weeks[j].md%></p>
+								<a href="/sport/gymresource?gymid=<%=locals.data1.id%>&fiedid=<%=locals.data2[i].id%>&date=<%=locals.weeks[j].d%>&gymname=<%=locals.data1.name%> <%=locals.data2[i].fieldname%>#<%=j%>" class="ColorO DateOrderBut">预定</a>
+							</div>
+						</div>
+
+						<%}%>
+
+					</div>
+				</div>
+			</div><!--场馆选定 周几-->
+
+
+		</div>
+		<%}%>
+		<%}%>
+
+
+		<!--<div data-tab-panel-1 class="am-tab-panel ">
+            2222
+        </div>
+        <div data-tab-panel-2 class="am-tab-panel ">
+        33333333333
+        </div>-->
+
+	</div>
+
+
+	<div class="am-u-sm-12 clearfix" style="padding:0;">
+		<div class="am-panel am-panel-default PBpanel" style="padding:0;margin-bottom:0;border:0;">
+			<div class="am-panel-hd ColorB">服务说明</div>
+			<div class="am-panel-bd ColorB" style="padding-left:20px;">
+				<ul class="serviceIco clearfix">
+					<li>
+						<img src="images/ico-car.png" />
+						<p>停车</p>
+					</li>
+					<li>
+						<img src="images/ico-bath.png" />
+						<p>淋浴</p>
+					</li>
+					<li>
+						<img src="images/ico-keyboard.png" />
+						<p>储衣柜</p>
+					</li>
+					<li>
+						<img src="images/ico-cloth.png" />
+						<p>更衣室</p>
+					</li>
+					<li>
+						<img src="images/ico-hot.png" />
+						<p>暖气</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="am-u-sm-12 clearfix" style="padding:0 0 1rem 0;background-color:#f0f1f5;">
+		<div class="am-panel am-panel-default PBpanel" style="padding:0;margin-bottom:0;border:0;">
+			<div class="am-panel-hd ColorB">场地说明</div>
+			<div class="am-panel-bd ColorB">
+				室内、侧灯、塑胶地板
+			</div>
+		</div>
+	</div>
+</div>
+
+<%}%>
+
+</div>
+
+
+<script type="text/javascript">
+	var swiper = new Swiper('.swiper-container', {
+		pagination: '.swiper-pagination',
+		slidesPerView: 3.4,
+		stopPropagation: false,//停止滑动事件
+		disableScroll: true, //阻止由于触摸而滚动屏幕
+		paginationClickable: true,
+		centeredSlides : false, //第一块居左
+		slidesOffsetBefore : 0,
+		spaceBetween:10
+	});
+</script>
+
+
+
+<%include ../common/bottom.html %>

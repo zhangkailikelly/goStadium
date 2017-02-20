@@ -1,0 +1,39 @@
+<%include ../common/top.html %>
+<title>自定义菜单</title>
+<script type='text/javascript' src='/wxmp/js/weixinMenuEdit.js'></script>
+
+<body>
+<div class="am-form">
+  <fieldset>
+    <legend>自定义菜单</legend>
+
+    <div class="am-form-group">
+      <label >appid</label>
+      <input type="text" class="" id="appid"  value="<%=locals.appid||''%>">
+    </div>
+    <div class="am-form-group">
+      <label >secret</label>
+      <input type="text" class="" id="secret"  value="<%=locals.secret||''%>">
+    </div>
+
+    <div class="am-form-group">
+      <label class="am-radio-inline">
+        <input type="radio" name="menuType"  value="创建菜单" checked> 创建菜单
+      </label>
+      <label class="am-radio-inline">
+        <input type="radio" name="menuType" value="菜单查询"> 菜单查询
+      </label>
+     
+    </div>
+    <div class="am-form-group">
+      <label for="doc-ta-1">数据定义</label>
+      <textarea class="" rows="5" id="menuBody">此处不用管</textarea>
+    </div>
+
+    <p><button  id="btn_save" class="am-btn am-btn-default">提交</button></p>
+  </fieldset>
+</div>
+
+<%include ../common/common.html %>
+<%include ../common/bottom.html %>
+

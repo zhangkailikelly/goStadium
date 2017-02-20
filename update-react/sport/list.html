@@ -1,0 +1,128 @@
+<%include ../common/top.html %>
+<link rel="stylesheet" href="/sport/css/main.css"/>
+<script type="text/javascript" src="/sport/js/list.js"></script>
+
+<title>订场服务</title>
+
+<body ontouchstart>
+	<div class="container" id="container">
+		<!--头部开始-->
+        <header data-am-widget="header" class="am-header am-header-default am-no-layout">
+			<div class="am-header-left am-header-nav">
+				<!-- <a href="#">
+					<i class="am-header-icon am-icon-user"></i>
+				</a> -->
+				<a href="/sport/member" class="ico-my"><span><i></i></span></a>
+			</div>
+			<!--<h1 class="am-header-title" id="menutil">北京<i class="am-header-icon am-icon-angle-down"></i></h1>-->
+			<div class="am-header-right am-header-nav">
+				<!-- <a href="search.html" >
+					<i class="am-header-icon am-icon-search"></i>
+				</a> -->
+				<a href="/sport/search" class="ico-search"><span><i></i></span></a>
+			</div>
+		</header> 
+		
+		
+		
+		<div class="CGType">
+			<div class="am-g">
+				<div class="am-panel am-panel-default" style="margin-bottom:0;border:0;">
+					<div class="am-panel-bd am-padding-sm">
+						<div class="am-avg-sm-12 TopSearch">
+							<nav data-am-widget="menu" class="am-menu  am-menu-default am-no-layout">
+							  <ul class="am-menu-nav" style="padding:0px">
+							    <li class="am-parent">
+							     <a class="ColorA">
+							     <i class="am-icon-list am-menu-toggle" style="color:#666"></i>
+								 场馆类型
+								 </a>
+							      <ul class="am-menu-sub am-collapse" style="opacity: 0.9; height: 16px;margin-left: -1.5rem;margin-right: -1.5rem;padding-left:1rem;">
+						       	  	  <li class="">
+							            <a href="/sport/list?type=1" class="">篮球</a>
+							          </li>
+						       	  	  <li class="">
+							            <a href="/sport/list?type=2" class="">羽毛球</a>
+							          </li>
+							          <li class="">
+							            <a href="/sport/list?type=3" class="">网球</a>
+							          </li>
+							          <li class="">
+							            <a href="/sport/list?type=4" class="">乒乓球</a>
+							          </li>
+							          <li class="">
+							            <a href="/sport/list?type=5" class="">游泳</a>
+							          </li>
+							          <li class="">
+							            <a href="/sport/list?type=6" class="">足球</a>
+							          </li>
+							          <li class="">
+							            <a href="/sport/list?type=7" class="">健身</a>
+							          </li>
+							          <li class="">
+							            <a href="/sport/list" class="">全部</a>
+							          </li>
+							      </ul>
+							    </li>
+							  </ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--图文列表-->
+		<div class="group group-no-padded" style="margin:0;margin-top:-1px;">
+			<div class="group-body">
+				<ul class="am-list am-list-static">
+					
+					<%if(locals.data.length>0){%>
+						<%for(var i=0;i<locals.data.length;i++){
+							var img,imgUrl;
+							if( locals.data[i].imgurl ){
+									if(Array.isArray( locals.data[i].imgurl )){
+											img=locals.data[i].imgurl.split('|');
+											imgUrl = img[0];
+										}else{
+											img=locals.data[i].imgurl;
+											imgUrl = img;
+										}
+								}
+							var s="http://101.200.133.31:3008/uploadImage/"+locals.data[i].id+'/'+imgUrl;
+							%>
+							<li target="_blank" class="am-g good-detial" onclick="javascript:location.href='/sport/details?id=<%=locals.data[i].id%>'">
+								<div class="am-u-sm-3">
+									<img src="<%=s%>" class="scrollLoading" style="height:70px;"/>
+								</div>
+								<div class="am-u-sm-9 ">
+									<p class="am-text-sm good-name ColorA" >
+										<%=locals.data[i].name%>
+										<span class="am-fr am-text-xs am-text-default ColorB">500m
+								        </span>
+									</p>
+									<p class="good-price">
+								        <strong class="am-text-secondary ColorO">￥10
+								        	<em class="little-price">起</em>
+								        </strong>
+								    </p>
+								</div>
+							</li>
+						  <%}%>
+					<%}else{%>
+						<div style="text-align: center;">
+						暂无信息...
+						</div>
+					<%}%>
+					
+					
+
+				</ul>
+			</div>
+		</div><!--图文列表-->
+		
+	</div>
+
+
+
+<%include ../common/bottom.html %>

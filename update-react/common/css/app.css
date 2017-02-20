@@ -1,0 +1,75 @@
+/*全局样式*/
+
+@font-face { 
+font-family:hkhb; 
+src: url('/common/font/hkhb.TTF'); 
+}
+
+@font-face { 
+font-family:zzgfl; 
+src: url('/common/font/zzgfl.otf'); 
+}
+
+
+
+
+/*头部*/
+.topbar{background:#62b0ac;height:45px;color:white;}
+
+
+/*输入框圆角*/
+.borderradius{border-radius: 5px}
+/*按钮圆角*/
+.bottonradius{text-align:center;background:#ff9f2f;padding:5px 0px;color:white;border-radius:5px;}
+
+/*遮挡效果*/
+.cover{position: fixed;text-align: center; top: 0;
+	      left: 0;
+	      width: 100%;
+	      height: 100%;
+	      background: rgba(0, 0, 0, 0.8);
+	      display: none;
+	      z-index: 20000;
+}
+
+
+
+/*单选按钮*/
+.lui-radio {
+	width: 25px;
+	height: 25px;
+	position: relative;
+	background: #ffffff;
+	border: solid 1px #dddddd;
+	border-radius: 50%;
+	display: table;
+	-webkit-appearance: none;
+	transition: background-color ease 0.2s;
+}
+.lui-radio:checked {
+	background-color: #3498db;
+	border: solid 1px #3498db;
+	text-align: center;
+}
+.lui-radio:checked:before {
+	position: absolute;
+	left: 5px;
+	top: 3px;
+	font-size: 15px;
+	display: table;
+	font-family: FontAwesome,sans-serif;
+	content: "\f00c";
+	color: #ffffff;
+}
+.lui-radio:checked:after {
+	position: absolute;
+	left: 5px;
+	top:3px;
+	font-size: 15px;
+	display: table;
+	font-family: FontAwesome,sans-serif;
+	content: "\f00c";
+	color: #ffffff;
+}
+
+

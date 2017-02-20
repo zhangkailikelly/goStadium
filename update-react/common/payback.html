@@ -1,0 +1,109 @@
+<%include top.html %>
+
+<script type="text/javascript">
+
+   $(function(){
+   	  //执行showTime()  
+	  showTime();  
+   });
+
+	//设定倒数秒数  
+	var t = 20;  
+	//显示倒数秒数  
+	function showTime(){  
+		
+	    t -= 1;  
+	    
+	    document.getElementById('showtimes').innerHTML= t;  
+	    
+	    if(t==0){  
+	    	    close_wechat();
+	       // location.href='/shop';  
+	    }  
+	    //每秒执行一次,showTime()  
+	    setTimeout("showTime()",1000);  
+	}  
+	
+	//关闭微信窗口
+	function close_wechat(){
+		 
+		 WeixinJSBridge.call("closeWindow");
+    }
+    
+    function onBridgeReady(){
+	 	WeixinJSBridge.call('hideOptionMenu');
+	}
+	
+	if (typeof WeixinJSBridge == "undefined"){
+	    if( document.addEventListener ){
+	        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+	    }else if (document.attachEvent){
+	        document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+	        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+	    }
+	}else{
+	    onBridgeReady();
+	}
+	
+	
+	
+</script>
+
+<body>
+
+
+
+
+<div class="am-g" style="margin-top:50px;text-align: center">
+	
+		<%if(locals.isSuccess){%>
+			<div class="am-u-sm-12" style="color:green;font-size:30px;">
+				<i class="am-icon-check"></i>
+				<%=locals.paystatus%>
+			</div>
+			
+			<div class="am-u-sm-12" style="text-align: center;margin-top:20px;">
+				<span id="showtimes">20</span> 秒钟后自动关闭
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				
+				<!--<a href="#" onclick="close_wechat();">关闭</a>-->
+				<a href="/sport/member/orders">查看订单</a>
+				
+			</div>
+			
+		<%}else{%>
+			<div class="am-u-sm-12" style="color:red;font-size:30px;">
+				<i class="am-icon-remove"></i>
+				<%=locals.errMessage%>
+			</div>
+			
+			<div class="am-u-sm-12" style="color: red;margin-top:20px;text-align:center;">
+				   <span id="showtimes">10</span> 秒钟后自动关闭
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					
+					<a href="#" onclick="close_wechat();">关闭</a>
+			</div>
+			
+			
+			
+			
+		<%}%>
+		
+	
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%include bottom.html %>

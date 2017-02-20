@@ -1,0 +1,132 @@
+<%include ../common/top.html %>
+<title>我的订单</title>
+<link rel="stylesheet" href="/sport/css/main.css"/>
+<link rel="stylesheet" href="/sport/css/account.css"/>
+
+<script type="text/javascript" src="/sport/js/myorder.js"></script>
+
+
+<body ontouchstart style="background-color:#f0f1f5!important;">
+<!-- 	<div class="container" id="container"> -->
+		<!--头部开始-->
+        <header data-am-widget="header" class="am-header am-header-default am-no-layout">
+			<div class="am-header-left am-header-nav">
+				<a href="javascript:history.back();">
+					<i class="am-header-icon am-icon-angle-left am-icon-sm" style="vertical-align: middle;"></i>
+					<span class="am-header-nav-title">返回</span>
+				</a>
+			</div>
+			<h1 class="am-header-title">我的订单</h1>
+			<div class="am-header-right am-header-nav">
+				<a href="/sport/list" class="ico-home"><span><i></i></span></a>
+			</div>
+		</header><!--头部结束-->
+		<!--   -->
+    	<div data-am-widget="tabs" class="am-tabs am-tabs-default MyOrder" data-am-tabs="{noSwipe: 1}">
+	        <ul class="am-tabs-nav am-cf" style="background-color:#fff;">
+	            <li class="am-active" style="margin-left:-1px;"><a href="[data-tab-panel-0]">待付款</a></li>
+	            <li class=""><a href="[data-tab-panel-1]">待下场</a></li>
+	            <li class="" style="border:none;"><a href="[data-tab-panel-2]">全部</a></li>
+	        </ul>
+	        <div class="am-tabs-bd" style="border:0">
+	            <div data-tab-panel-0 class="am-tab-panel am-active"  style="padding:0;">
+	            	    <%if(locals.order1.length>0){%>
+	            	    	    <%for(var i=0;i<locals.order1.length;i++){%>
+	            	    	    	   <section class="am-panel am-panel-default am-panel-radius">
+							    <div class="am-panel-hd ColorA">
+							        <span><em class="Type">&nbsp;</em><%=locals.order1[i].gymName||''%></span>
+							        <span class="fr ColorOr">未付款</span>
+							    </div>
+							    <div class="am-panel-bd ColorD OrderCenter" onclick="orderinfo('<%=locals.order1[i].id%>');">
+							        <p><label for="">开始时间：</label><span>
+										<span><%=locals.order1[i].startshijian%></span>
+									</span></p>
+									<p><label for="">场地号码：</label>
+										<%for(var j=0;j<locals.order1[i].changDi.length;j++){%>
+										<span><%=locals.order1[i].changDi[j]%></span>
+										<%}%>
+									</p>
+							        <p><label for="">日期：</label><span><%=locals.order1[i].shijian||''%></span></p>
+							        <p class="BCount ColorA">合计：<em class="priceB">￥<%=locals.order1[i].amount%></em></p>
+							    </div>
+							    <footer class="am-panel-footer">
+								  	<span class="am-input-group-btn">
+								        <button id="doc-confirm-toggle" class="am-btn am-radius BorderG" type="button" onclick="cancelorder('<%=locals.order1[i].id%>')" style="margin-right:10px;">取消订单</button>
+								        <button class="am-btn am-radius BorderO" type="button" onclick="topay('<%=locals.order1[i].id%>');">去支付</button>
+								    </span>
+								</footer>
+							</section>
+	            	    	    <%}%>
+	            	    <%}else{%>
+	            	    	    <div class="am-u-sm-12 am-text-center">暂无订单...</div>
+	            	    <%}%>
+
+					
+	            </div>
+	            <div data-tab-panel-1 class="am-tab-panel ">
+	            	     <%if(locals.order2.length>0){%>
+	            	    	    <%for(var i=0;i<locals.order2.length;i++){%>
+	            	    	    	   <section class="am-panel am-panel-default am-panel-radius">
+							    <div class="am-panel-hd ColorA">
+							        <span><em class="Type">&nbsp;</em>已付款</span>
+							        <span class="fr ColorOr"><%=locals.order2[i].name%></span>
+							    </div>
+							    <div class="am-panel-bd ColorD OrderCenter">
+							        <p><label for="">开始时间：</label><span><%=locals.order2[i].startshijian%></span></p>
+									<p><label for="">场地号码：</label>
+										<%for(var j=0;j<locals.order2[i].changDi.length;j++){%>
+										<span><%=locals.order2[i].changDi[j]%></span>
+										<%}%>
+									</p>
+							        <p><label for="">日期：</label><span><%=locals.order2[i].shijian||''%></span></p>
+							        <p class="BCount ColorA">合计：<em class="priceB">￥<%=locals.order2[i].amount%></em></p>
+							    </div>
+							    <footer class="am-panel-footer">
+								        <button class="am-btn am-radius ColorA BorderG" onclick="orderinfo('<%=locals.order2[i].id%>');" type="button">查看</button>
+							    </footer>
+							</section>
+	            	    	    <%}%>
+	            	    <%}else{%>
+	            	    	    <div class="am-u-sm-12 am-text-center">暂无订单...</div>
+	            	    <%}%>
+	            </div>
+	            <div data-tab-panel-2 class="am-tab-panel ">
+					<%if(locals.order3.length>0){%>
+					<%for(var i=0;i<locals.order3.length;i++){%>
+					<section class="am-panel am-panel-default am-panel-radius">
+						<div class="am-panel-hd ColorA">
+							<span><em class="Type">&nbsp;</em><%=locals.order3[i].gymName||''%></span>
+							<span class="fr ColorOr"><%=locals.order3[i].orderStatus=="0"?"未付款":(locals.order3[i].orderStatus=="1"?"已付款":"已取消")%></span>
+						</div>
+						<div class="am-panel-bd ColorD OrderCenter">
+							<p><label for="">开始时间：</label><span><%=locals.order3[i].startshijian%></span></p>
+
+							<p><label for="">场地号码：</label>
+								<%for(var j=0;j<locals.order3[i].changDi.length;j++){%>
+								<span><%=locals.order3[i].changDi[j]%></span>
+								<%}%>
+							</p>
+
+							<p><label for="">日期：</label><span><%=locals.order3[i].shijian||''%></span></p>
+							<p class="BCount ColorA">合计：<em class="priceB">￥<%=locals.order3[i].amount%></em></p>
+						</div>
+						<footer class="am-panel-footer">
+							<button class="am-btn am-radius ColorA BorderG" onclick="orderinfo('<%=locals.order3[i].id%>');" type="button">查看</button>
+						</footer>
+					</section>
+					<%}%>
+					<%}else{%>
+					<div class="am-u-sm-12 am-text-center">暂无订单...</div>
+					<%}%>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+
+
+
+
+
+<%include ../common/common.html %>
+<%include ../common/bottom.html %>

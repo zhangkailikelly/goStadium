@@ -1,0 +1,143 @@
+<%include ../common/top.html %>
+<title>确认订单</title>
+<link rel="stylesheet" href="/sport/css/main.css"/>
+<script type="text/javascript" src="/sport/js/selgyms.js"></script>
+
+<body>
+	
+<body ontouchstart style="background-color:#f0f1f5;">
+	<input type="hidden" id="gymid" value="<%=locals.params.gymid%>">
+	<input type="hidden" id="gymname" value="<%=locals.params.gymname%>">
+	<input type="hidden" id="total" value="<%=locals.params.total%>">
+	<input type="hidden" id="arrid" value="<%=locals.params.arrid%>">
+	<input type="hidden" id="wxopenId" value="<%=locals.params.wxopenId%>">
+	<div class="container" id="container">
+		<!--头部开始-->
+        <header data-am-widget="header" class="am-header am-header-default am-no-layout" style="background-color:#000!important;">
+			<div class="am-header-left am-header-nav">
+				<a href="javascript:history.back();">
+					<i class="am-header-icon am-icon-chevron-left"></i>
+				</a>
+			</div>
+			<h1 class="am-header-title">确认订单</h1>
+		</header><!--头部结束-->
+		<!--   -->
+    	<div class="Order am-u-sm-12 clearfix" style="padding:2rem 0 0 0;background-color:#fff;">
+    		<p class="am-u-sm-12">
+    			<label class="am-u-sm-4 ColorB">场馆名称：</label>
+    			<span class="am-u-sm-8 ColorA"><%=locals.params.gymname%></span>
+    		</p>
+    		<hr data-am-widget="divider" class="am-divider am-divider-default" style="margin-top:0;" />
+    		<p class="am-u-sm-12">
+    			<label class="am-u-sm-4 ColorB" style="height: 70px;">场地明细：</label>
+				<%for(var i=0;i<locals.params.content.length;i++){%>
+    			<span class="am-u-sm-8 ColorA" ><%=locals.params.content[i]%></span>
+				<%}%>
+    		</p>
+    		<hr data-am-widget="divider" class="am-divider am-divider-default" style="margin-top:0;" />
+    		<p class="am-u-sm-12">
+    			<label class="am-u-sm-4 ColorB">日期：</label>
+    			<span class="am-u-sm-8 ColorA"><%=locals.params.time%></span>
+    		</p>
+	    </div>
+	    <div class="Order am-u-sm-12" style="margin-top:20px;padding:1rem 0 0 0;background-color:#fff;">
+	    	<p class="am-u-sm-12">
+
+			<!--<div class="am-form-group">-->
+				<!--<label for="doc-ipt-email-1">邮件</label>-->
+				<!--<input type="email" class="" id="doc-ipt-email-1" placeholder="输入电子邮件">-->
+			<!--</div>-->
+
+
+    			<label class="am-u-sm-4 ColorB">手机号：</label>
+    			<span class="am-u-sm-8 ColorA PR"><input id="userphone" type="number" class=""  style="width:85%;outline: none;border:none" placeholder="输入电话号码">
+    			<i class="fr am-icon-times-circle ColorC"></i>
+    			</span>
+    			<input type="hidden"  value="18612249292">
+    		</p>
+		</div>
+		<div class="am-u-sm-12 botSubmit clearfix">
+			<p class="fl">合计：<em class="ColorO priceB">￥<%=locals.params.total%></em></p>
+		    <button type="button" onclick="orderOK();" class="fr am-btn am-radius am-btn-orange">提交订单</button>
+		</div>
+	    
+
+	</div>
+	
+
+<script type="text/javascript">
+	
+//提交订单
+/**
+ * 创建订单,然后跳转到订单付款页面;
+ */
+function orderOK(){
+	var arrid = $("#arrid").val();
+
+
+//	提交订单的数据
+	var data="gymname="+$("#gymname").val();
+	data+="&gymid="+$("#gymid").val();
+	data+="&total="+$("#total").val();
+	data+="&arrid="+$("#arrid").val();
+	console.log("ok");
+
+//	提交电话的数据
+	var data2 = {
+		wxopenId: $("#wxopenId").val(),
+		phone: $("#userphone").val(),
+	};
+	console.log(data2)
+	$.get('/sport/clm/updatephone',data2).then(function(result){
+		if(result.code == "200"){
+			console.log("手机修改成功");
+			$.post('/sport/order/add',data,function(result){
+				if(result.resultCode=='0'){
+					location.href="/sport/order/pay?orderNo="+result.orderNo;
+				}else{
+					console.log("订单创建不成功");
+				}
+			});
+		}else{
+			console.log(result)
+		}
+	})
+
+
+//	$.post('/sport/order/add',data,function(result){
+//		if(result.resultCode=='0'){
+//			location.href="/sport/order/pay?orderNo="+result.orderNo;
+//		}else{
+//
+//		}
+//	});
+	
+	
+}
+
+
+	$(function(){
+		console.log("22222222222");
+		console.log($("#wxopenId").val());
+		var data = {
+			wxopenId:$("#wxopenId").val()
+		}
+		var url = "/sport/clm/userphone"
+		$.get(url, data, function(data){
+			console.log(data);
+			if(data.phone){
+				$("#userphone").val(data.phone)
+			}else{
+				$("#userphone").val(" ");
+			}
+
+		})
+	})
+	
+</script>
+	
+
+
+<%include ../common/bottom.html %>
+
+

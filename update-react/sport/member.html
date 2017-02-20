@@ -1,0 +1,72 @@
+<%include ../common/top.html %>
+<title>个人中心</title>
+<link rel="stylesheet" href="/sport/css/main.css"/>
+<link rel="stylesheet" href="/sport/css/account.css"/>
+
+
+<body ontouchstart style="background-color:#fff!important;">
+	<div class="container" id="container">
+		<!--头部开始-->
+        <header data-am-widget="header" class="am-header am-header-default am-no-layout">
+			<h1 class="am-header-title">我的账户</h1>
+			<div class="am-header-right am-header-nav">
+				<a href="/sport/list" class="ico-home"><span><i></i></span></a>
+			</div>
+		</header><!--头部结束-->
+		<!--   -->
+    	<div class="am-g" style="background-color:#fff;padding:1rem 0;">
+		    <div class="am-u-sm-8">
+			  	<div class="am-u-sm-5">
+			  		<a href="#">
+			  		<img src="<%=locals.member.headimgurl%>" style="height:60px;width:60px;border-radius:100%;">
+			  		</a>
+			  	</div>
+			  	
+			  	<div class="am-u-sm-7">
+			  		<div class="am-g ColorA AccName" ><%=locals.member.nickName%></div>
+			  		<div class="am-g ColorD"><%=locals.member.phone||locals.member.address%></div>
+			    </div>
+		    </div>
+		    <div class="am-u-sm-4 AboutAcc">
+		    	<a href="XGInfor.html">
+			    	<i class="am-icon-angle-right am-icon-sm"></i>
+			    </a>
+		    </div>
+	    </div>
+	    <div class="jianju" style="margin:0;"></div>
+	    <div class="am-g AccList">
+			<a href="/sport/member/orders" class="am-u-sm-12">
+		    	<img src="images/order.png">&nbsp;我的订单
+			    <span style="float: right">
+			    	<i class="am-icon-angle-right am-icon-sm"></i>
+			    </span>	
+			</a>
+		    
+		    <a style="display: none" href="/sport/member/card" class="am-u-sm-12">
+		    	<img src="images/card.png">&nbsp;场馆会员卡
+			    <span style="float: right">
+			    	<i class="am-icon-angle-right am-icon-sm"></i>
+			    </span>	 
+		    </a>
+		    <a style="display: none" href="/sport/member/collect" class="am-u-sm-12">
+		    	<img src="images/love.png">&nbsp;我的收藏
+			    <span style="float: right">
+			    	<i class="am-icon-angle-right am-icon-sm"></i>
+			    </span>	 
+		    </a>	
+		</div>
+	    
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+<%include ../common/bottom.html %>

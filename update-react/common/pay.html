@@ -1,0 +1,108 @@
+<%include top.html %>
+
+<link rel="stylesheet" href="/common/css/app.css">
+<script type="text/javascript" src="/common/js/pay.js"></script>
+
+<body>
+	
+<div class="am-g am-topbar-fixed-top" style="padding:0 0;background:#F37B1D;height:45px;">
+    <a href="javascript:history.back();">
+        <div class="am-u-sm-3" style="margin-top:10px;text-align:left">
+            <span class="am-icon-angle-left am-icon-sm" style="color:white;"></span>
+        </div>
+    </a>
+
+    <div class="am-u-sm-6" style="margin-top:10px;font-family:微软雅黑;color:white;text-align:center;">
+          订单支付
+    </div>
+
+    <div class="am-u-sm-3" style="margin-top:11px;text-align:right">
+       
+    </div>
+
+</div>
+
+
+<div class="am-g">
+	
+	<div class="am-u-sm-12">
+	<span>订单编号</span>：<%=locals.orderinfo.orderNo%>
+	</div>
+	
+	<div class="am-u-sm-12">
+		产品信息：<%=locals.orderinfo.proName||''%>
+	</div>
+	<div class="am-u-sm-12">
+		产品价格：￥<%=locals.orderinfo.price||''%>
+	</div>
+	<div class="am-u-sm-12">
+		购买数量：<%=locals.orderinfo.buyNum||''%>
+	</div>
+    	<div class="am-u-sm-12">
+	<span>手机号码</span>：<%=locals.orderinfo.phone%>
+	</div>
+	
+
+	
+	<div class="am-u-sm-12">
+	<span id="totalspan">订单金额</span>：￥<%=locals.orderinfo.total%>
+	</div>
+	<br/>
+	
+	<div class="am-u-sm-12" style="padding:0px;height: 50px;overflow: hidden;margin-top:10px;">
+	    <div class="am-u-sm-2"  style="padding: 3px 0px 4px 12px">
+	       <img src="../common/images/logo_wechatpay.png" style="height: 40px"/>
+	    </div>
+	    
+	    <div class="am-u-sm-8"  style="padding: 0px">
+	       <div style="line-height: 23px"><label>微信支付</label> </div>
+	       <div style="font-size: 12px;">推荐已安装微信客户端的用户使用 </div>
+	    </div>
+	    
+	     <div class="am-u-sm-2"  style="padding: 7px 20px;text-align: right" onclick="checkPaytype('微信支付')">
+	        <input class="lui-radio" id="paytype1"  type="radio" value="微信支付" name="payType"  >
+	    </div>
+			    
+	</div>
+	 
+	
+	
+	<!--<div class="am-u-sm-12" style="padding:0px;height: 50px;overflow: hidden">
+	    <div class="am-u-sm-2"  style="padding: 3px 0px 4px 12px">
+	       <img src="../common/images/logo_alipay.png" style="height: 40px"/>
+	    </div>
+	    
+	    <div class="am-u-sm-8"  style="padding: 0px">
+	       <div style="line-height: 23px"><label>支付宝</label> </div>
+	       <div style="font-size: 12px;">推荐已安装支付宝客户端的用户使用 </div>
+	    </div>
+	    
+	     <div class="am-u-sm-2"  style="padding: 7px 20px;text-align: right" onclick="checkPaytype('支付宝')">
+	        <input class="lui-radio" id="paytype2" type="radio" value="支付宝" name="payType"  >
+	    </div>
+			    
+	 </div>-->
+	  
+	
+	<input type="hidden" value="<%=locals.orderinfo.payType%>" id="payType">
+	<form class="am-form" id="payfrom" name="alipayment" action="/create_direct_pay_by_user"  onSubmit="return dopay();" method="post" target="_blank">
+	    
+	    <input size="30" id="orderNo" type="hidden" name="orderNo" value="<%=locals.orderinfo.orderNo%>"/>
+        <input size="30" id="total" type="hidden" name="total" value="<%=locals.orderinfo.total%>"/>
+	    <div class="am-u-sm-12"  style="margin-top:15px;">
+		   <button type="submit" class="am-btn am-btn-warning am-btn-block">立即支付</button>
+		</div>
+	</form>
+	
+	
+</div>
+
+	
+	
+
+
+
+
+
+
+<%include bottom.html %>

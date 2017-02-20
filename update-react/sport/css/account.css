@@ -1,0 +1,9 @@
+.AccName{font-size:2rem;}
+.AboutAcc{line-height:60px;}
+.AboutAcc a{float:right;}
+.AboutAcc a i{color:#bfbfc5;}
+.AccList{background-color: #fff;}
+.AccList a{border-bottom:1px solid #efefef;color:#333;padding: 1rem 1rem 1rem 2rem;}
+.AccList a img{display: inline-block;width:22px;height:22px;margin-right: 8px;}
+.AccList a i{color:#bfbfc5;}
+.Padd{padding:1rem 0!important;}
